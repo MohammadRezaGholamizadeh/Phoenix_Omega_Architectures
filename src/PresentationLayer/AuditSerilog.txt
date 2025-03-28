@@ -1,0 +1,12 @@
+2023-04-17 09:29:00.088 +03:30 [INF] 
+*** Data Base Initialized Successfully !!! ****
+[ Data Base Provider : SqlServer ]
+[ Data Base Name : Omega ]
+
+2023-04-17 09:29:00.307 +03:30 [INF] Now listening on: https://localhost:52273
+2023-04-17 09:29:00.309 +03:30 [INF] Now listening on: http://localhost:52274
+2023-04-17 09:29:00.310 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-04-17 09:29:00.311 +03:30 [INF] Hosting environment: Development
+2023-04-17 09:29:00.311 +03:30 [INF] Content root path: D:\PhoenixOmegaArchitecture\Phoenix_Omega_Architecture\src\PresentationLayer
+2023-04-17 09:29:01.264 +03:30 [INF] Request starting HTTP/2 GET https://localhost:52273/ - -
+2023-04-17 09:29:01.400 +03:30 [INF] Request finished HTTP/2 GET https://localhost:52273/ - - - 404 0 - 139.2270ms

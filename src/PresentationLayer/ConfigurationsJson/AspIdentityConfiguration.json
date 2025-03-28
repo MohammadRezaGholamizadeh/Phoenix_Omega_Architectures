@@ -1,0 +1,21 @@
+{
+  "AspIdentityConfig": {
+    "PasswordConfig": {
+      "RequireNonAlphanumeric": false,
+      "RequireLowercase": false,
+      "RequireUppercase": false,
+      "RequiredLength": 3,
+      "RequireDigit": false
+    },
+    "JwtBearerTokenSettings": {
+      "SecretKey": "PhoenixEncryptionKey",
+      "Audience": "Phoenix",
+      "Issuer": "Phoenix",
+      "ExpiryTimeInSeconds": 360000,
+      "RefreshTokenExpiryTimeInSeconds": 720000,
+      "RequireHttpsMetadata": false,
+      "SaveToken": true
+    },
+    "LockoutAllowedForNewUsers": false
+  }
+}

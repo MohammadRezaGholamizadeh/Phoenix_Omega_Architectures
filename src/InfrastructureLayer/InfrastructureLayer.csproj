@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	
+	
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.5.0" />
+		<PackageReference Include="Hangfire" Version="1.7.30" />
+		<PackageReference Include="Hangfire.AspNetCore" Version="1.7.30" />
+		<PackageReference Include="Hangfire.Core" Version="1.7.30" />
+		<PackageReference Include="Hangfire.SQLite" Version="1.4.2" />
+		<PackageReference Include="Invio.Extensions.Authentication.JwtBearer" Version="2.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.19" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.19" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.19" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+		<PackageReference Include="Quartz" Version="3.6.3" />
+		<PackageReference Include="Quartz.AspNetCore" Version="3.6.3" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+		<PackageReference Include="Magick.NET-Q8-AnyCPU" Version="11.1.0" />
+		<PackageReference Include="Serilog.Sinks.SQLite" Version="5.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Sentry.AspNetCore" Version="2.1.8" />
+		<PackageReference Include="Sentry" Version="2.1.8" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Stimulsoft.Reports.Engine.NetCore" Version="2019.4.2" />
+	</ItemGroup>
+	
+	
+	<ItemGroup>
+    <EmbeddedResource Include="Components\Reports\StimulSoftReports\TestReports\MrtFiles\TestReport.mrt" />
+	  <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+	  <ProjectReference Include="..\IdentityLayer\IdentityLayer.csproj" />
+	</ItemGroup>
+	
+	
+	<ItemGroup>
+	  <Folder Include="Components\Reports\StimulSoftReports\TestReports\Contracts\Dtos\" />
+	  <Folder Include="Services\Images\" />
+	</ItemGroup>
+
+</Project>

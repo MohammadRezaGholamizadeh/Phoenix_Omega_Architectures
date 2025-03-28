@@ -1,0 +1,10 @@
+{
+  "HangfireConfig": {
+    "DBProvider": "SqlServer",
+    "Server": ".",
+    "DataBaseName": "OmegaHangFire",
+    "Trusted_Connection": true,
+    "UserId": null,
+    "PassWord": null
+  }
+}
