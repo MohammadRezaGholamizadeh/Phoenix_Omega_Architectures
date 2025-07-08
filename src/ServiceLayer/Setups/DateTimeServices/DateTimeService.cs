@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ServiceLayer.Setups.DateTimeServices
+﻿namespace ServiceLayer.Setups.DateTimeServices
 {
     public interface DateTimeService
     {

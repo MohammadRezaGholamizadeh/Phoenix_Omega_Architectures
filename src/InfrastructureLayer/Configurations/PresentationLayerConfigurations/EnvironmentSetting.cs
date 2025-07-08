@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using Sentry;
-using ServiceLayer.Setups.BusinessExceptions;
 
 namespace InfrastructureLayer.Configurations.PresentationLayerConfigurations
 {
@@ -16,8 +14,12 @@ namespace InfrastructureLayer.Configurations.PresentationLayerConfigurations
                                     .AddEnvironmentVariables()
                                     .Build();
 
-            webHostBuilder.UseEnvironment(configuration.GetValue("Environment", defaultValue: "Development"));
-            webHostBuilder.UseUrls(configuration.GetValue<string>("HostUrls"));
+            var environment = configuration.GetValue("Environment", defaultValue: "Development");
+            if (string.IsNullOrEmpty(environment))
+                throw new Exception("Environment Must Have Value !!!");
+
+            webHostBuilder.UseEnvironment(environment);
+
         }
 
         public static void SetExceptionFilterForType<T>(this IWebHostBuilder webHostBuilder) where T : Exception

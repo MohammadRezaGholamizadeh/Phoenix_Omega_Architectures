@@ -55,7 +55,7 @@ namespace InfrastructureLayer.Reports.StimulSoftReports.TestReports
             var result =
                 await StimulsoftReportComponent
                       .CreateInstance()
-                      .SetLicense()
+                      //.SetLicense()
                       .SetResourceStream(resourcePath)
                       .AddBusinessObject("Counts", values.Counts)
                       .RunExportPdfByBusinessObjectsData();

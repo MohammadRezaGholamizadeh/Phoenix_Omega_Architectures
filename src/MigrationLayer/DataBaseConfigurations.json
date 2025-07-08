@@ -1,0 +1,5 @@
+{
+  "PersistenceConfig": {
+    "ConnectionString": "server=.;database=NEXIMUS;Trusted_Connection = true"
+  }
+}

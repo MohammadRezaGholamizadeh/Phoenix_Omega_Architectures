@@ -1,48 +1,25 @@
 ﻿using FluentMigrator.Runner;
-using InfrastructureLayer.Configurations.ConfigurationsJson;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using IMigrationRunner =
-      InfrastructureLayer.Configurations.MigrationLayerConfigurations.Contracts.IMigrationRunner;
 
 namespace MigrationLayer
 {
-    public class MigrationRunner : IMigrationRunner
+    public static class MigrationRunner
     {
-        private static IConfiguration _configuration;
-        private readonly ILogger<MigrationRunner> _logger;
-
-        public MigrationRunner(
-            IConfiguration configuration,
-            ILogger<MigrationRunner> logger)
+        public static void Main(string[] args)
         {
-            _configuration = configuration;
-            _logger = logger;
-        }
-        public void Initialize(string[]? args)
-        {
-            var dataAccessSetting =
-                _configuration.GetDataAccessConfig();
-
             RunRootMigrations(args);
-
-
-            _logger.LogInformation(
-                Environment.NewLine + "*** Data Base Initialized Successfully !!! ****"
-                + Environment.NewLine
-                + $"[ Data Base Provider : {dataAccessSetting.DBProvider} ]" + Environment.NewLine
-                + $"[ Data Base Name : {dataAccessSetting.DataBaseName} ]" + Environment.NewLine
-                );
         }
-        public static void RunRootMigrations(string[]? args)
+        public static void RunRootMigrations(string[] args)
         {
-            var options = GetSettings(args, _configuration);
+            var options = GetSettings(args, Path.GetDirectoryName(typeof(MigrationRunner).Assembly.Location));
 
-            CreateDatabaseSchema(options.ConnectionString);
+            var connectionString = options.ConnectionString;
 
-            var runner = CreateRunner(options.ConnectionString, options);
+            CreateDatabaseSchema(connectionString);
+
+            var runner = CreateRunner(connectionString, options);
             runner.MigrateUp();
         }
 
@@ -78,7 +55,7 @@ namespace MigrationLayer
                 connectionString).InitialCatalog;
         }
 
-        private static FluentMigrator.Runner.IMigrationRunner CreateRunner(
+        private static IMigrationRunner CreateRunner(
             string connectionString, MigrationSettings options)
         {
             var container = new ServiceCollection()
@@ -87,21 +64,31 @@ namespace MigrationLayer
                     .AddSqlServer()
                     .WithGlobalConnectionString(connectionString)
                     .ScanIn(typeof(MigrationRunner).Assembly).For.All())
-                .AddSingleton<MigrationSettings>(options)
+                .AddSingleton(options)
                 .AddSingleton<ScriptResourceManager>()
                 .AddLogging(_ => _.AddFluentMigratorConsole())
                 .BuildServiceProvider();
-            return container.GetRequiredService<FluentMigrator.Runner.IMigrationRunner>();
+            return container.GetRequiredService<IMigrationRunner>();
         }
 
         private static MigrationSettings GetSettings(
-            string[]? args, IConfiguration configuration)
+            string[] args, string baseDir)
         {
+            var configurations = new ConfigurationBuilder()
+                .SetBasePath(baseDir)
+                .AddJsonFile(
+                    "DataBaseConfigurations.json",
+                    optional: true,
+                    reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args)
+                .Build();
+
             var settings = new MigrationSettings();
             settings.ConnectionString =
-                configuration
-                .GetDataAccessConfig().ConnectionString;
-
+                configurations
+                .GetSection("PersistenceConfig")
+                .GetValue<string>("ConnectionString");
             return settings;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Hangfire;
-using InfrastructureLayer.Configurations.MigrationLayerConfigurations.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -184,15 +183,15 @@ namespace InfrastructureLayer.Configurations.PresentationLayerConfigurations
             return this;
         }
 
-        public ApplicationBuilderConfigurationSetter InitializeDataBase()
-        {
-            var dbInitializer =
-                _app.ApplicationServices
-                   .GetRequiredService<IMigrationRunner>();
+        //public ApplicationBuilderConfigurationSetter InitializeDataBase()
+        //{
+        //    var dbInitializer =
+        //        _app.ApplicationServices
+        //           .GetRequiredService<IMigrationRunner>();
 
-            dbInitializer.Initialize(null);
-            return this;
-        }
+        //    dbInitializer.Initialize(null);
+        //    return this;
+        //}
     }
     public class ExceptionErrorDto
     {

@@ -6,7 +6,6 @@ using DataAccessLayer.EFTech.UnitOfWorks;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Services.ColorService;
-using ServiceLayer.Services.ColorService.Contracts;
 using ServiceLayer.Setups.RepositoryInterfaces;
 using ServiceLayer.Setups.ServicecInterfaces;
 using System;

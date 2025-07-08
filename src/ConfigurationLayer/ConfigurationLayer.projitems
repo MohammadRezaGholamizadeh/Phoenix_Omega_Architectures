@@ -8,10 +8,4 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>ConfigurationLayer</Import_RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)InfrastructureLayerConfiguration\AutoFacConfigurations\AutofacConfig.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)InfrastructureLayerConfiguration\AutoFacConfigurations\" />
-  </ItemGroup>
 </Project>
